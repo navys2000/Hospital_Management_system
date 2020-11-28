@@ -1,0 +1,95 @@
+body{
+    background-image: url("/boot/b/image/p.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    float: left;;
+    padding-top: 120px;
+        
+}
+div{
+  opacity:70%;
+}
+a{
+  padding: 0%;
+  margin: 25px;
+  
+}
+a#d1{
+ 
+ font-size: 28px;
+  
+  transition: 0.5s ease-in-out;
+  width: 250px;
+  height: 80px;
+}
+a#d1:hover{
+  background: url("/boot/b/image/new.jpg");
+  background-size: cover;
+  font-size: 0%;
+transform:  scale(1.3);
+}
+
+
+a#d2{
+  font-size: 28px;
+  background-size: cover;
+  width: 250px;
+  height: 80px;
+  transition: 0.5s ease-in-out;
+}
+a#d2:hover{
+  background: url("/boot/b/image/WhatsApp\ Image\ 2020-11-27\ at\ 19.45.05.jpeg") ;
+  background-size: cover;
+  font-size: 0%;
+  transform: scale(1.3);
+}
+
+a#d3{
+ 
+ font-size: 28px;
+  background-size: cover;
+  transition: 0.5s ease-in-out;
+  width:250px;
+  height: 80px;
+}
+a#d3:hover{
+   background: url("/boot/b/image/WhatsApp\ Image\ 2020-11-25\ at\ 15.44.17.jpeg");
+   background-size: cover;
+   font-size: 0%;
+  transform: scale(1.3);
+}
+
+a#d4{
+ 
+ font-size: 25px;
+  background-size: cover;
+  width: 250px;
+  height: 80px;
+  transition: 0.5s ease-in-out;
+}
+
+a#d4:hover{
+  background: url("/boot/b/image/dbc09c85-a7d7-4510-b1ac-9b6024debd1b.jpg");
+  background-size: cover;
+  font-size: 0%;
+  transform: scale(1.3);
+}
+
+a#d5
+{
+ 
+ font-size: 28px;
+  background-size: cover;
+  width: 250px;
+  height: 80px;
+  transition: 0.5s ease-in-out;
+}
+a#d5:hover{
+  background: url("/boot/b/image/r1.jpg");
+  background-size: cover;
+  font-size: 0%;
+  transform: scale(1.3);
+}
+
+
+
