@@ -17,18 +17,18 @@
             <img src="logo.png" alt=""">
         </div>
         <ul>
-            <li class="item"><a href="#home">Home</a></li>
+            <li class=" item"><a href="#home">Home</a></li>
             <li class="item"><a href="#services-container">Services</a></li>
             <li class="item"><a href="#client-section">Our Clients</a></li>
             <li class="item"><a href="#contact">Contact Us</a></li>
-        </ul>
+            </ul>
     </nav>
 
     <section id="home">
         <h1 class="h-primary">Navys Medicare</h1>
         <p>Empowering people to improve their lives. </p>
         <p>The power to heal,for better care, better understanding and better tommorows. </p>
-        <button class="btn">sign-in</button>
+        <button class="btn" id="btn">sign-in</button>
     </section>
 
     <section id="services-container">
@@ -37,7 +37,7 @@
             <div class="box">
                 <img src="img/co.png" alt="">
                 <h2 class="h-secondary center">covid19 wards</h2>
-                <p class="center">patients exebitting majore symptoms of covid19 but not conformed to have the 
+                <p class="center">patients exebitting majore symptoms of covid19 but not conformed to have the
                     inflection have admitted to dedicated facilties in our hospital at banglore. However coronavirus
                     patients are kept in a saperate covid ward.
                 </p>
@@ -45,15 +45,22 @@
             <div class="box">
                 <img src="img/2.png" alt="">
                 <h2 class="h-secondary center">Ambulance Facility</h2>
-                <p class="center"> An ambulance is a vehicle for transportation of sick or injured peopleto, from or between places of treatment for an illness OR injury and in some instances will also provideoutof hospital medical care to the patient.
-                     The word isoften associated with road going emergency ambulances which form part of an emergency medical service, administeringemergency care to those with acute medical problems. </p>
+                <p class="center"> An ambulance is a vehicle for transportation of sick or injured peopleto, from or
+                    between places of treatment for an illness OR injury and in some instances will also provideoutof
+                    hospital medical care to the patient.
+                    The word isoften associated with road going emergency ambulances which form part of an emergency
+                    medical service, administeringemergency care to those with acute medical problems. </p>
             </div>
             <div class="box">
                 <img src="img/3.png" alt="">
                 <h2 class="h-secondary center">persnol Care</h2>
-                <p class="center">Personal care includes assistance with washing, dressing, and other personal needs including continence and assistance with eating and drinking. Nursing care is provided either by or under the supervision of qualified nurses.
-                    Personal care is a broad term used to refer to supporting with personal hygiene and toileting, along with dressing and maintaining your personal appearance. It can cover, but is not limited to: Bathing and showering, including bed-baths.
-                     Applying lotions and creams as required. Dressing and getting ready for bed.
+                <p class="center">Personal care includes assistance with washing, dressing, and other personal needs
+                    including continence and assistance with eating and drinking. Nursing care is provided either by or
+                    under the supervision of qualified nurses.
+                    Personal care is a broad term used to refer to supporting with personal hygiene and toileting, along
+                    with dressing and maintaining your personal appearance. It can cover, but is not limited to: Bathing
+                    and showering, including bed-baths.
+                    Applying lotions and creams as required. Dressing and getting ready for bed.
                 </p>
             </div>
         </div>
@@ -67,7 +74,7 @@
             <div class="client-item">
                 <img src="img/logo2.png" alt="Our Client">
             </div>
-          
+
             <div class="client-item">
                 <img src="img/logo4.png" alt="Our Client">
             </div>
@@ -108,5 +115,10 @@
         </div>
     </footer>
 </body>
+<script>
+    document.getElementById("btn").onclick = function () {
+        location.href = "/reclogin"
+    }
+</script>
 
 </html>

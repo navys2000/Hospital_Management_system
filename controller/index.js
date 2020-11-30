@@ -22,6 +22,7 @@ mysqlconnection.connect(function (err) {
 app.use(bodyparser.urlencoded({ extended: true }))
 app.use(bodyparser.json())
 app.use(express.static("../public"))
+// function to send home page
 app.get("/", function (req, res) {
     // mysqlconnection.query('SELECT * FROM sql_store.customers;', (err, row, fields) => {
     //     if (!err) {
@@ -37,20 +38,30 @@ app.get("/", function (req, res) {
     //     }
 
     // })
-    res.sendFile("D:\\dbmsprj\\public\\options.html")
+    dummystr = path.resolve(__dirname, "..", "public", "index.html")
+    res.sendFile(dummystr)
 
 })
+// function to send rec login page
+app.get("/reclogin", function (req, res) {
+    res.sendFile(path.resolve(__dirname, "..", "public", "login2.html"))
+})
+// function to login
 app.get("/viewPatient.html", function (req, res) {
-    res.sendFile("D:\\dbmsprj\\public\\viewPatient.html")
+    res.sendFile(path.resolve(__dirname, "..", "public", "viewPatient.html"))
+})
+// function to send options page
+app.get("/options", function (req, res) {
+    res.sendFile(path.resolve(__dirname, "..", "public", "options.html"))
 })
 app.get("/detailentry.html", function (req, res) {
-    res.sendFile("D:\\dbmsprj\\public\\detailentry.html")
+    res.sendFile(path.resolve(__dirname, "..", "public", "detailentry.html"))
 })
 var dummyid = -1;
 app.post("/update", function (req, res) {
     dummyid = parseInt(req.body.pid)
     console.log(dummyid)
-    res.sendFile("D:\\dbmsprj\\public\\update.html")
+    res.sendFile(path.resolve(__dirname, "..", "public", "update.html"))
 })
 app.post("/updatedata", function (req, res) {
     pid = req.body.pid;
@@ -86,7 +97,7 @@ app.get("/getpidsdetail", function (req, res) {
     })
 })
 app.post("/savedata", function (req, res) {
-    pid = req.body.pid;
+    // pid = req.body.pid;
     pname = req.body.pname;
     page = req.body.page;
     pnumber = req.body.pnumber;
@@ -98,7 +109,7 @@ app.post("/savedata", function (req, res) {
     padmissiondate = req.body.padmissiondate
     console.log(pgender)
     console.log(paddress)
-    insertquerry = `insert into  patient values (${pid},'${pname}',${page},${pnumber},'${pgender}','${pbloodgroup}',${pweight},'${paddress}','${padmissiondate}')`;
+    insertquerry = `insert into  patient(pname,p_age,p_number,pgender,blood_group,weight,address,admission_date) values ('${pname}',${page},${pnumber},'${pgender}','${pbloodgroup}',${pweight},'${paddress}','${padmissiondate}')`;
     mysqlconnection.query(insertquerry, function (err, row, fiels) {
         if (!err) {
             console.log(row, "ok packet thing")
