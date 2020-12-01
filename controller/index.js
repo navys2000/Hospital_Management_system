@@ -3,6 +3,7 @@ const express = require("express")
 const bodyparser = require("body-parser")
 const app = express()
 const path = require("path")
+const { query } = require("express")
 
 // var mysqlconnection = mysql.createConnection(
 //     {
@@ -96,6 +97,38 @@ app.get("/getpidsdetail", function (req, res) {
         }
     })
 })
+// function to store data details into db
+app.post('/doctorentry', function (req, res) {
+    drname = req.body.drname;
+    drqu = req.body.drqu;
+    squery = `insert into doctor (dr_name,qua) value ('${drname}','${drqu}');`
+    mysqlconnection.query(squery, function (err, row, fields) {
+        if (err) {
+            console.log("error near line 107", err)
+        }
+        else {
+            console.log(row)
+        }
+    })
+    res.send("doctor has been entered")
+
+
+})
+// function to getdoctor details
+app.get("/getdoctor", function (req, res) {
+    squery = `select dr_name from doctor`
+    mysqlconnection.query(squery, function (err, row, field) {
+        if (err) {
+            console.log("error at line 122", err)
+        } else {
+            console.log(row)
+            res.send(row)
+        }
+
+    })
+
+})
+
 app.post("/savedata", function (req, res) {
     // pid = req.body.pid;
     pname = req.body.pname;
