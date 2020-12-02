@@ -116,7 +116,8 @@ app.post('/doctorentry', function (req, res) {
 })
 // function to getdoctor details
 app.get("/getdoctor", function (req, res) {
-    squery = `select dr_name from doctor`
+    squery = `select * from doctor`
+    res.setHeader("Access-Control-Allow-Origin", '*')
     mysqlconnection.query(squery, function (err, row, field) {
         if (err) {
             console.log("error at line 122", err)
@@ -140,9 +141,16 @@ app.post("/savedata", function (req, res) {
 
     paddress = req.body.paddress;
     padmissiondate = req.body.padmissiondate
+    dr_id = req.body.sel1
+    // for (let opt of sel.options) {
+    //     if (opt.selected) {
+    //         console.log(opt.value)
+    //     }
+    // }
+    console.log(dr_id)
     console.log(pgender)
     console.log(paddress)
-    insertquerry = `insert into  patient(pname,p_age,p_number,pgender,blood_group,weight,address,admission_date) values ('${pname}',${page},${pnumber},'${pgender}','${pbloodgroup}',${pweight},'${paddress}','${padmissiondate}')`;
+    insertquerry = `insert into  patient(pname,p_age,p_number,pgender,blood_group,weight,address,admission_date,dr_id) values ('${pname}',${page},${pnumber},'${pgender}','${pbloodgroup}',${pweight},'${paddress}','${padmissiondate}',${dr_id})`;
     mysqlconnection.query(insertquerry, function (err, row, fiels) {
         if (!err) {
             console.log(row, "ok packet thing")
@@ -152,6 +160,28 @@ app.post("/savedata", function (req, res) {
     })
     res.send("form submited")
 
+})
+// all related to profile
+var id = -1
+app.get("/patientprofile/:pid", function (req, res) {
+    id = req.params.pid;
+    res.sendFile(path.resolve(__dirname, "..", "public", "patient-profile.html"))
+
+})
+app.get("/profiledata", function (req, res) {
+    console.log(id)
+    res.setHeader("Access-Control-Allow-Origin", '*')
+    squery = `select pno, pname ,admission_date,dr_name from patient p, doctor d
+ where d.dr_id=p.dr_id and p.pno=${id}; `
+    mysqlconnection.query(squery, function (err, row, field) {
+        if (err) {
+            console.log("error at line 175", err)
+        } else {
+            console.log(row)
+            res.send(row)
+
+        }
+    })
 })
 app.get("/getdata", function (req, res) {
     mysqlconnection.query('select * from patient;', function (err, row, fields) {

@@ -64,7 +64,7 @@
                 var cel1 = newrow.insertCell(cellno)
                 console.log(data[i][key])
                 if (key === "pno") {
-                    cel1.innerHTML = `<a href="/patientprofile:${data[i][key]}">${data[i][key]}</a>`
+                    cel1.innerHTML = `<a href="/patientprofile/${data[i][key]}">${data[i][key]}</a>`
 
                 } else {
                     cel1.innerHTML = data[i][key]

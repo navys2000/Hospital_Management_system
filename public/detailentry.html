@@ -72,25 +72,19 @@
             </div>
             <div class="form-group">
                 <label for="sel1">Doctors:</label>
-                <select class="form-control" id="sel1" multiple>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
+                <select class="form-control" id="sel1" name="sel1">
+                    <!-- <option value="hi" name="ehoo">ehoo</option> -->
+
                 </select>
             </div>
             <input type="submit" class="btn btn-default btn-success">
         </form>
 
-        <button onclick="simple()">
+        <!-- <button onclick="simple()">
             click
-        </button>
-
-
-
+        </button> -->
 
     </div>
-
 
 </body>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
@@ -99,19 +93,28 @@
 <script>
     var f = document.getElementById("sel1")
 
-    for (var i = 5; i <= 8; i++) {
-        f.options[f.options.length] = new Option( i, i)
-    }
-    function simple() {
+    // for (var i = 5; i <= 8; i++) {
+    //     f.options[f.options.length] = new Option( i, i)
+    // }
+    // function simple() {
 
-        var e = document.getElementById("sel1")
-        for (let opt of e.options) {
-            if (opt.selected) {
+    //     var e = document.getElementById("sel1")
+    //     for (let opt of e.options) {
+    //         if (opt.selected) {
 
-                console.log(opt.value)
-            }
+    //             console.log(opt.value)
+    //         }
+    //     }
+    // }
+    console.log("hi")
+    fetch("/getdoctor").then(function (data) {
+        return data.json()
+    }).then(function (dat) {
+        for (d in dat) {
+            f.options[f.options.length] = new Option(dat[d]["dr_name"], dat[d]["dr_id"])
+            console.log(dat[d]["dr_id"])
         }
-    }
+    })
 </script>
 
 </html>
