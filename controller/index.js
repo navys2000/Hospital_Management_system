@@ -1,9 +1,19 @@
-const mysqlconnection = require("../model/databaseconncetivity")
+// const mysqlconnection = require("../model/databaseconncetivity")
+
 const express = require("express")
+const mysql = require("mysql")
 const bodyparser = require("body-parser")
-const app = express()
-const path = require("path")
 const { query } = require("express")
+const path = require("path")
+const app = express()
+var mysqlconnection = mysql.createConnection(
+    {
+        host: 'by59qgkgtip5p358uwli-mysql.services.clever-cloud.com',
+        user: 'ugpgztx7leeszzit',
+        password: 'JyYlZ2HheQD5e8zt82Ho',
+        database: 'by59qgkgtip5p358uwli'
+    }
+);
 
 // var mysqlconnection = mysql.createConnection(
 //     {
