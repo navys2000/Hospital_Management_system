@@ -161,14 +161,24 @@ app.post("/savedata", function (req, res) {
     console.log(pgender)
     console.log(paddress)
     insertquerry = `insert into  patient(pname,p_age,p_number,pgender,blood_group,weight,address,admission_date,dr_id) values ('${pname}',${page},${pnumber},'${pgender}','${pbloodgroup}',${pweight},'${paddress}','${padmissiondate}',${dr_id})`;
+    // insertquerry = `insert into  patient values (7,'${pname}',${page},${pnumber},'${pgender}','${pbloodgroup}',${pweight},'${paddress}','${padmissiondate}',${dr_id})`;
+    var pid
     mysqlconnection.query(insertquerry, function (err, row, fiels) {
         if (!err) {
-            console.log(row, "ok packet thing")
+            pid = row['insertId']
+            mysqlconnection.query(`insert into room (pno) values(${pid})`, function (err, row, fields) {
+                if (!err) {
+                    console.log("room inserted for a particular patient")
+                }
+            })
+
         } else {
             console.log(err, "error near /savedata")
         }
     })
+    // insertquerry2=`insert into room(pno) values()`
     res.send("form submited")
+    console.log(pid, "hi line 177")
 
 })
 // all related to profile
@@ -177,6 +187,19 @@ app.get("/patientprofile/:pid", function (req, res) {
     id = req.params.pid;
     res.sendFile(path.resolve(__dirname, "..", "public", "patient-profile.html"))
 
+})
+// function to delete a patient
+app.get("/deleteprofile/:pid", function (req, res) {
+    id = req.params.pid
+    mysqlconnection.query(`delete from patient where pno=${id};`, function (err, row, field) {
+        if (err) {
+            console.log("error at line 196 while doing delete")
+        } else {
+            console.log(row)
+            res.sendFile(path.resolve(__dirname, "..", "public", "viewPatient.html"))
+            // res.send("deleted")
+        }
+    })
 })
 app.get("/profiledata", function (req, res) {
     console.log(id)
@@ -200,17 +223,13 @@ app.get("/getdata", function (req, res) {
             console.log(row)
             // console.log((row[11]["admission_date"]))
             // d = row[11]["admission_date"]
-
             // str = d.toISOString().split('T')[0]
             // console.log(str)
-
-
             res.setHeader("Access-Control-Allow-Origin", '*')
             res.send(row)
         }
     })
 })
-
 app.listen(80, function () {
     console.log("server started")
 })
