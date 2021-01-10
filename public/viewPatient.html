@@ -31,6 +31,7 @@
                 <th scope="col">address</th>
                 <th scope="col">Adimitted Date</th>
                 <th scope="col">Dr_id</th>
+                <th scope="col">Operation</th>
             </tr>
         </thead>
 
@@ -55,7 +56,6 @@
             // newrow.onclick() = function () {
             //     location.href = "www.youtube.com"
             // }
-
             // var cel1 = newrow.insertCell(0)
             // var cel2 = newrow.insertCell(1)
             // cel1.innerHTML = obj[key][0]
@@ -66,13 +66,13 @@
                 console.log(data[i][key])
                 if (key === "pno") {
                     cel1.innerHTML = `<a href="/patientprofile/${data[i][key]}">${data[i][key]}</a>`
-
                 } else {
                     cel1.innerHTML = data[i][key]
                 }
-
                 cellno++
             }
+            var cel1 = newrow.insertCell(cellno)
+            cel1.innerHTML = `<a class="btn btn-default btn-danger"href="/deleteprofile/${data[i]["pno"]}">Delete</a>`
         }
     })
 
