@@ -129,6 +129,18 @@
           <td>
             <h3 id="admission_date"></h3>
           </td>
+
+
+        </tr>
+        <tr>
+          <td class="left">
+            <h3>ROOM NO</h3>
+          </td>
+          <td>
+            <h3 id="room"></h3>
+          </td>
+
+
         </tr>
         <!-- <tr>
       <td class="left"><h3>Covid test result</h3></td>
@@ -157,9 +169,16 @@
     document.getElementById("pid").innerHTML = dat[0]["pno"];
     document.getElementById("dr_name").innerHTML = dat[0]["dr_name"];
     document.getElementById("admission_date").innerHTML = dat[0]["admission_date"];
-
+    document.getElementById("room").innerHTML = dat[0]["room_no"]
 
   })
+  // fetch("/getroom").then(function (data1) {
+
+  //     return data1.json()
+  //   }).then(function (dat1) {
+  //     document.getElementById("room").innerHTML = "hi"
+  //   })
+  console.log("im")
 </script>
 
 </html>

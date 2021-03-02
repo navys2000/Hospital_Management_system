@@ -8,16 +8,22 @@
     html {
       height: 100%;
       margin: 0;
-      background-image: url("bg.jpg");
+      background-image: url("./bg.jpg");
       height: 100%;
       background-position: center;
       background-repeat: no-repeat;
       background-size: cover;
+      text-align: center;
+      font-size: 25px;
+      margin: 10px;
+
     }
 
     .myclass {
-      border: 2px solid red;
+      border: 3px solid red;
     }
+
+
 
     /* .bg { */
     /* The image used */
@@ -36,7 +42,7 @@
 
 <body>
 
-  <h2>Doctor entry Form</h2>
+  <h2>Doctor Registration Form</h2>
 
   <form action="/doctorentry" method="POST" onchange="myfun()">
     <label for="fname">Doctor Name:</label><br>

@@ -3,10 +3,10 @@ const express = require("express")
 const app = express()
 var mysqlconnection = mysql.createConnection(
     {
-        host: 'by59qgkgtip5p358uwli-mysql.services.clever-cloud.com',
-        user: 'ugpgztx7leeszzit',
-        password: 'JyYlZ2HheQD5e8zt82Ho',
-        database: 'by59qgkgtip5p358uwli'
+        host: 'localhost',
+        user: 'root',
+        password: 'amogh555kashyap',
+        database: 'hospital'
     }
 );
 module.exports = mysqlconnection

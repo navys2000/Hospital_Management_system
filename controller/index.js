@@ -1,4 +1,4 @@
-// const mysqlconnection = require("../model/databaseconncetivity")
+const mysqlconnection = require("../model/databaseconncetivity")
 
 const express = require("express")
 const mysql = require("mysql")
@@ -6,14 +6,14 @@ const bodyparser = require("body-parser")
 const { query } = require("express")
 const path = require("path")
 const app = express()
-var mysqlconnection = mysql.createConnection(
-    {
-        host: 'by59qgkgtip5p358uwli-mysql.services.clever-cloud.com',
-        user: 'ugpgztx7leeszzit',
-        password: 'JyYlZ2HheQD5e8zt82Ho',
-        database: 'by59qgkgtip5p358uwli'
-    }
-);
+// var mysqlconnection = mysql.createConnection(
+//     {
+//         host: 'by59qgkgtip5p358uwli-mysql.services.clever-cloud.com',
+//         user: 'ugpgztx7leeszzit',
+//         password: 'JyYlZ2HheQD5e8zt82Ho',
+//         database: 'by59qgkgtip5p358uwli'
+//     }
+// );
 
 // var mysqlconnection = mysql.createConnection(
 //     {
@@ -165,10 +165,21 @@ app.post("/savedata", function (req, res) {
     var pid
     mysqlconnection.query(insertquerry, function (err, row, fiels) {
         if (!err) {
+            console.log("im here")
+            console.log(row)
             pid = row['insertId']
+            console.log(pid)
             mysqlconnection.query(`insert into room (pno) values(${pid})`, function (err, row, fields) {
                 if (!err) {
                     console.log("room inserted for a particular patient")
+                    res.send("form submited")
+                } else {
+                    mysqlconnection.query(`delete from patient where pno=${pid}`, function (err, row, fields) {
+                        if (!err) {
+                            console.log("everything is normal!!")
+                        }
+                    })
+                    res.send("rooms full")
                 }
             })
 
@@ -177,7 +188,6 @@ app.post("/savedata", function (req, res) {
         }
     })
     // insertquerry2=`insert into room(pno) values()`
-    res.send("form submited")
     console.log(pid, "hi line 177")
 
 })
@@ -204,8 +214,8 @@ app.get("/deleteprofile/:pid", function (req, res) {
 app.get("/profiledata", function (req, res) {
     console.log(id)
     res.setHeader("Access-Control-Allow-Origin", '*')
-    squery = `select pno, pname ,admission_date,dr_name from patient p, doctor d
- where d.dr_id=p.dr_id and p.pno=${id}; `
+    squery = `select p.pno, pname ,admission_date,dr_name,r.room_no from patient p, doctor d,room r
+ where d.dr_id=p.dr_id and p.pno=${id} and r.pno=${id}; `
     mysqlconnection.query(squery, function (err, row, field) {
         if (err) {
             console.log("error at line 175", err)
@@ -213,6 +223,18 @@ app.get("/profiledata", function (req, res) {
             console.log(row)
             res.send(row)
 
+        }
+    })
+})
+app.get("/getroom", function (req, res) {
+    res.setHeader("Access-Control-Allow-Origin", '*')
+    console.log(id)
+    mysqlconnection.query(`select room_no from room where pno=${id}`, function (row, err, fields) {
+        if (!err) {
+            console.log(row)
+            res.send(row)
+        } else {
+            console.log(err)
         }
     })
 })
